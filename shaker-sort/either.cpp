@@ -41,6 +41,7 @@ void forward_step(unsigned arr[], unsigned const begin_idx, unsigned const end_i
             arr[i+1] = temp;
         }
     }
+    right--;
 }
 
 
@@ -53,6 +54,7 @@ void backward_step(unsigned arr[], unsigned const begin_idx, unsigned const end_
             arr[i-1] = temp;
         }
     }
+    left++;
 }
 
 
@@ -68,7 +70,7 @@ void shaker_sort(unsigned arr[], unsigned const begin_idx , unsigned const end_i
 
 
 int main() {
-    for (unsigned i = 10; i < 2000; i += 10) {
+    for (unsigned i = 5; i < 2000; i += 5) {
         auto begin = std::chrono::steady_clock::now();
         for (int j = 0; j < 150; j++) {
             unsigned* arr = rand_gen(i); 
@@ -90,4 +92,28 @@ for (unsigned i = 0; i < N; i++) {
     std::cout << arr[i] << " ";
 }
 std::cout << std::endl;
+
+int main() {
+    for (unsigned i = 10; i < 14; i += 10) {
+        for (int j = 0; j < 1; j++) {
+            unsigned* arr = rand_gen(i); 
+
+            std::cout << "Array before sorting:" << std::endl;
+            for (unsigned k = 0; k < i; k++) {
+                std::cout << arr[k] << " ";
+            }
+            std::cout << std::endl;
+
+            shaker_sort(arr, 0, i-1);
+
+            std::cout << "Array after sorting:" << std::endl;
+            for (unsigned k = 0; k < i; k++) {
+                std::cout << arr[k] << " ";
+            }
+            std::cout << std::endl;
+        }
+    }
+
+    return 0;
+}
 */
