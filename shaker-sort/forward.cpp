@@ -54,6 +54,7 @@ int main() {
         for (int j = 0; j < 50; j++) {
             unsigned* arr = rand_gen(i); 
             shaker_sort(arr, 0, i-1);
+            delete arr;
         }
         auto end = std::chrono::steady_clock::now();
         auto time_span =
