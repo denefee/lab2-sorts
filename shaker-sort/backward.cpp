@@ -33,36 +33,31 @@ unsigned* rand_gen(unsigned N) {
 
 
 void backward_step(unsigned arr[], unsigned const begin_idx, unsigned const end_idx) {
-    unsigned left = begin_idx, right = end_idx, temp = 0;
-    for (unsigned i = right; i > left; i--) {
-        if (arr[i] < arr[i-1]) {
-            temp = arr[i];
-            arr[i] = arr[i-1];
-            arr[i-1] = temp;
+    for (unsigned i = end_idx; i > begin_idx; i--) {
+        if (arr[i] < arr[i - 1]) {
+            std::swap(arr[i], arr[i - 1]);
         }
     }
 }
 
 
 void shaker_sort(unsigned arr[], unsigned const begin_idx , unsigned const end_idx) {
-    unsigned left = begin_idx, right = end_idx;
-    while (left <= right) {
-        backward_step(arr, left, right);
-        left++;
+    for (unsigned i = begin_idx; i <= end_idx; i++) {
+        backward_step(arr, begin_idx, end_idx - i);
     }
 }
 
 
 int main() {
-    for (unsigned i = 10; i < 2000; i += 10) {
+    for (unsigned i = 5; i < 2000; i += 5) {
         auto begin = std::chrono::steady_clock::now();
-        for (int j = 0; j < 150; j++) {
+        for (int j = 0; j < 50; j++) {
             unsigned* arr = rand_gen(i); 
             shaker_sort(arr, 0, i-1);
         }
         auto end = std::chrono::steady_clock::now();
         auto time_span =
-        std::chrono::duration_cast<std::chrono::nanoseconds>((end - begin)/150);
+        std::chrono::duration_cast<std::chrono::nanoseconds>((end - begin)/50);
         std::cout << time_span.count() << std::endl;
     }
 
@@ -76,5 +71,6 @@ for (unsigned i = 0; i < N; i++) {
     std::cout << arr[i] << " ";
 }
 std::cout << std::endl;
+
 
 */
